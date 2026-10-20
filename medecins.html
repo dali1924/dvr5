@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Tarif</th>
+            <th>Date Embauche</th>
+            <th>Spécialité</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (m of medecins; track m.idMedecin) {
+            <tr>
+              <td>{{ m.idMedecin }}</td>
+              <td>{{ m.nomMedecin }}</td>
+              <td>{{ m.tarifMedecin }}</td>
+              <td>{{ m.dateEmbauche | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ m.specialite.nomSpec }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="supprimerMedecin(m)">Supprimer</button>
+                <a class="btn btn-success ms-2" [routerLink]="['/updateMedecin', m.idMedecin]"
+                  >Modifier</a
+                >
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

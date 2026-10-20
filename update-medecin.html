@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>Modifier un Médecin :</h2>
+  <div class="col-sm-6">
+    <label>ID Médecin</label>
+    <input
+      type="number"
+      class="form-control"
+      name="idMedecin"
+      [(ngModel)]="currentMedecin.idMedecin"
+      disabled
+    />
+
+    <label>Nom Médecin</label>
+    <input
+      type="text"
+      class="form-control"
+      name="nomMedecin"
+      [(ngModel)]="currentMedecin.nomMedecin"
+    />
+
+    <label>Tarif Médecin</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tarifMedecin"
+      [(ngModel)]="currentMedecin.tarifMedecin"
+    />
+
+    <label>Date Embauche</label>
+    <input
+      type="date"
+      class="form-control"
+      name="dateEmbauche"
+      [ngModel]="currentMedecin.dateEmbauche | date: 'yyyy-MM-dd'"
+      (ngModelChange)="currentMedecin.dateEmbauche = $event"
+    />
+
+    <label>Spécialité</label>
+    <select
+      class="form-control form-control-lg"
+      id="idSpec"
+      name="idSpec"
+      [(ngModel)]="updatedSpecId"
+    >
+      @for (spec of specialites; track spec.idSpec) {
+        <option [value]="spec.idSpec">{{ spec.nomSpec }}</option>
+      }
+    </select>
+
+    <button class="btn btn-success mt-3" (click)="updateMedecin()">Modifier</button>
+  </div>
+</div>

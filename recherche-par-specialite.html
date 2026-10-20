@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4 mt-3">
+    <label>Spécialités</label>
+    <select
+      class="form-control form-control-lg"
+      id="idSpec"
+      name="idSpec"
+      [(ngModel)]="idSpec"
+      (change)="onChange()"
+    >
+      @for (spec of specialites; track spec.idSpec) {
+        <option value="{{ spec.idSpec }}">{{ spec.nomSpec }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Tarif</th>
+          <th>Date Embauche</th>
+          <th>Spécialité</th>
+        </tr>
+        @for (medecin of medecins; track medecin.idMedecin) {
+          <tbody>
+            <tr>
+              <td>{{ medecin.idMedecin }}</td>
+              <td>{{ medecin.nomMedecin }}</td>
+              <td>{{ medecin.tarifMedecin }}</td>
+              <td>{{ medecin.dateEmbauche | date: 'dd/MM/yyyy' }}</td>
+              @if (medecin.specialite) {
+                <td>{{ medecin.specialite.nomSpec }}</td>
+              } @else {
+                <td>PAS DE SPECIALITE</td>
+              }
+            </tr>
+          </tbody>
+        }
+      </table>
+    </div>
+  </div>
+</div>
